@@ -7,10 +7,10 @@ docker rm -f nginx
 docker rm -f datacontainer
 
 #Se crea el contenedor de httpd con el puerto 80 y el respectivo volumen 
-docker create  -v datos:/var/www/html --name httpd -p 8080:80 mgreyes/httpd
+docker run -d  -v datos:/var/www/html --name httpd -p 8080:80 mgreyes/httpd
 
 #Se crea el contenedor de nginx con el puerto 81 y el respectivo volumen
-docker create -v datos:/usr/share/nginx/html --name nginx -p 8081:80 nginx
+docker run -d -v datos:/usr/share/nginx/html --name nginx -p 8081:80 mgreyes/nginx
 
 #Se crea pero no se inicia el datacontainer para alojar los datos de ambos contenedores 
 docker create  --volumes-from httpd --volumes-from nginx --name datacontainer centos:7
@@ -18,3 +18,4 @@ docker create  --volumes-from httpd --volumes-from nginx --name datacontainer ce
 #Se arrancan los contenedores 
 docker start nginx
 docker start httpd
+docker start datacontainer

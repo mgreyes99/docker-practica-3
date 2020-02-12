@@ -1,9 +1,11 @@
 FROM nginx
 
+RUN apt-get update
 
-RUN yum install -y wget
+RUN apt-get -y install php php-mysql
 
-RUN yum -y install php5-curl php5-gd php5-intl php-pear php5-imagick php5-imap php5-mcrypt php5-memcache php5-ming php5-ps php5-pspell
+RUN apt-get install -y wget
+
 
 RUN wget https://es.wordpress.org/latest-es_ES.tar.gz
 

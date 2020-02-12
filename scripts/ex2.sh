@@ -12,7 +12,7 @@ docker create --name=db  -e MYSQL_ROOT_PASSWORD=mariadb -e MYSQL_DATABASE1=moodl
 #Se crea el contenedor de wordpress 
 docker create --link db:db --name wordpress -p 8080:80 -v datos:/workspace/  mgreyes/httpd-wordpress
 
-docker create  --volumes-from httpd --volumes-from db --volumes-from wordpress --name datacontainer centos:7
+docker create   --volumes-from db --volumes-from wordpress --name datacontainer centos:7
 
 docker start db
 docker start wordpress
